@@ -1,5 +1,4 @@
 <?php
-
 // Vercel PHP serverless handler
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -15,27 +14,26 @@ $update = json_decode($content, true);
 // Só pra debug (opcional)
 file_put_contents("log.txt", date('Y-m-d H:i:s') . " - " . $content . PHP_EOL, FILE_APPEND);
 
-// Verifica se é um clique de botão
 if (isset($update["callback_query"])) {
-    $callback = $update["callback_query"];
-    $chat_id = $callback["message"]["chat"]["id"];
-    $data = $callback["data"];
+  $callback = $update["callback_query"];
+  $chat_id = $callback["message"]["chat"]["id"];
+  $data = $callback["data"];
 
-    $token = "8373241128:AAFC-sYdvXJkxTzGmEdu7Qo0xeyfcAMK554";
-    $url = "https://api.telegram.org/bot$token/sendMessage";
+  $token = "8373241128:AAFC-sYdvXJkxTzGmEdu7Qo0xeyfcAMK554";
+  $url = "https://api.telegram.org/bot$token/sendMessage";
 
-    $text = match($data) {
+  $text = match($data) {
     "vendido_001" => "✅ Venda confirmada!",
     "cancelar_001" => "❌ Venda cancelada!",
     default => "⚠️ Ação desconhecida: " . $data,
   };
 
-    $payload = json_encode([
+  $payload = json_encode([
     "chat_id" => $chat_id,
     "text" => $text
   ]);
 
-    $opts = [
+  $opts = [
     'http' => [
       'method' => 'POST',
       'header' => "Content-Type: application/json\r\n",
