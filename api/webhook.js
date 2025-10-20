@@ -22,7 +22,7 @@ export default async function handler(req, res) {
                             {
                                 text: "Abrir Formulário",
                                 web_app: {
-                                    url: "https://bubblekids-bot.vercel.app/formulario"
+                                    url: "https://google.com"
                                 }
                             }
                         ]
