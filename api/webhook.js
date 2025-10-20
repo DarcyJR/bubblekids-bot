@@ -8,7 +8,6 @@ export default async function handler(req, res) {
     // Verifica se é uma mensagem comum
     if (update.message) {
         const chatId = update.message.chat.id;
-        const text = update.message.text;
 
         // Responde de volta pro Telegram
         await fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
@@ -16,12 +15,18 @@ export default async function handler(req, res) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 chat_id: chatId,
-                text: `O que você deseja?`,
+                text: `Preencher Formulário`,
                 reply_markup: {
-                    inline_keyboard: [
-                        [{ text: "✅ Vendido", callback_data: "vendido" }],
-                        [{ text: "📦 Em estoque", callback_data: "estoque" }]
-                    ]
+                    keyboard: [
+                        [
+                            {
+                                text: "Abrir Formulário",
+                                web_app: { url: "https://bubblekids-bot.vercel.app/formulario" }
+                            }
+                        ]
+                    ],
+                    resize_keyboard: true,
+                    one_time_keyboard: true
                 }
             })
         });

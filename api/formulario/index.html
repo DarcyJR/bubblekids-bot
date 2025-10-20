@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Formulário Telegram</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <h3>Preencha as informações:</h3>
+    <input id="nome" placeholder="Seu nome" />
+    <button id="enviar">Enviar</button>
+
+    <script>
+      const tg = window.Telegram.WebApp;
+
+      document.getElementById("enviar").addEventListener("click", () => {
+        const nome = document.getElementById("nome").value;
+        tg.sendData(JSON.stringify({ nome }));
+        tg.close();
+      });
+    </script>
+  </body>
+</html>
