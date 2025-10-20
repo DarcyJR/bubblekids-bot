@@ -8,6 +8,7 @@ export default async function handler(req, res) {
     // Verifica se é uma mensagem comum
     if (update.message) {
         const chatId = update.message.chat.id;
+        const text = update.message.text;
 
         // Responde de volta pro Telegram
         await fetch(`https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`, {
@@ -18,14 +19,8 @@ export default async function handler(req, res) {
                 text: `O que você deseja?`,
                 reply_markup: {
                     inline_keyboard: [
-                        [
-                            {
-                                text: "Abrir Formulário",
-                                web_app: {
-                                    url: "https://google.com"
-                                }
-                            }
-                        ]
+                        [{ text: "✅ Confirmar", callback_data: "confirmar" }],
+                        [{ text: "❌ Cancelar", callback_data: "cancelar" }]
                     ]
                 }
             })
