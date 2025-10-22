@@ -19,8 +19,22 @@ export default async function handler(req, res) {
                 text: `O que você deseja?`,
                 reply_markup: {
                     inline_keyboard: [
-                        [{ text: "✅ Confirmar", callback_data: "confirmar" }],
-                        [{ text: "❌ Cancelar", callback_data: "cancelar" }]
+                        [
+                            {
+                                text: "Opção 1",
+                                callback_data: "acao_1"
+                            },
+                            {
+                                text: "Link Externo",
+                                url: "https://google.com"
+                            }
+                        ],
+                        [
+                            {
+                                text: "Opção 3",
+                                callback_data: "acao_3"
+                            }
+                        ]
                     ]
                 }
             })
