@@ -26,7 +26,9 @@ export default async function handler(req, res) {
                             },
                             {
                                 text: "Link Externo",
-                                url: "https://google.com"
+                                web_app: {
+                                    url: "https://google.com"
+                                }
                             }
                         ],
                         [
